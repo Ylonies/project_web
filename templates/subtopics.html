@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{title}}</h2>
+<div class="accordion" id="accordionExample">
+  {%for sb in subtopics%}
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{sb.id}}" aria-expanded="false" aria-controls="collapse{{sb.id}}">
+        {{sb.name}}
+      </button>
+    </h2>
+    <div id="collapse{{sb.id}}" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-info">
+            <a href="/{{sb.name}}/theory" class="link-dark rounded">Теория</a>
+          </li>
+          {%for ex in exercises[sb.id]%}
+          {% if not exercises[sb.id][ex]%}
+          <li class="list-group-item"><a href="/{{sb.name}}/exercise/{{ex.number}}" class="link-dark rounded">Задание {{ex.number}}</a></li>
+          {%else%}
+          <li class="list-group-item list-group-item-success"><a href="/{{sb.name}}/exercise/{{ex.number}}" class="link-dark rounded">Задание {{ex.number}}</a></li>
+          {%endif%}
+          {%endfor%}
+
+        </ul>
+      </div>
+    </div>
+  {%endfor%}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="py-5 text container">
+    <h1>Задача № {{exercise.number}}</h1>
+    <h3>Условие</h3>
+       <div>{{exercise.text}}</div>
+    <h3>Ответ</h3>
+     <form action="" method="post">
+         <p>
+            {{ form.answer.label }}<br>
+            {{ form.answer(class="form-control")}}<br>
+            {% for error in form.answer.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        </p>
+         <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+         <div class="alert alert-success" role="alert">
+             {{message}}
+         </div>
+     </form>
+    {%if exercise.number < num%}
+    <a href="/{{title}}/exercise/{{exercise.number + 1}}" class="btn btn-secondary">Продолжить</a>
+    {%else%}
+    <a href="/{{topic}}/subtopics" class="btn btn-secondary">Вернуться</a>
+    {%endif%}
+</section>
+
+{% endblock %}

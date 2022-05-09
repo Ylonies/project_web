@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row  full-height justify-content-center">
+ <h3>{{title}}</h3>
+ <embed src="/static/theory_data/1_1.pdf"
+  type="application/pdf"
+  width="70%" height="500" >
+</div>
+<div>
+ <a href="/{{topic}}/subtopics" class="btn btn-secondary">Вернуться</a>
+ <a href="/{{title}}/exercise/1" class="btn btn-secondary">Продолжить</a>
+</div>
+{% endblock %}
